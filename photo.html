@@ -51,9 +51,9 @@
 </head>
 <body>
 	<!-- 外层画布 -->
-	<audio autoplay="autoplay" loop preload="auto"><source src="./music.mp3" type="audio/mpeg" /></audio>
+	<audio id="audio" autoplay="autoplay" loop preload="auto"><source src="./music.mp3" type="audio/mpeg" /></audio>
 	<div id="canvas"></div>
-	 
+	<script src="assets/js/jquery.min.js"></script>
 	<script type="text/javascript">
 		//所有的数据
 		var list = [{
@@ -170,7 +170,18 @@
 			width: 400,
 			p:'生日快乐！ 2018/06/07'
 		}];
-
+		var isplay=true;
+		document.body.addEventListener('touchend', function()
+		{ 
+			if(isplay)
+			{
+			isplay=false;
+			var audio = $('#audio')[0]; 
+			audio.load();
+			audio.pause(); 
+			audio.play(); 
+			}
+		});
 		//构造函数
 		function Slider(opts){
 			//构造函数需要的参数
